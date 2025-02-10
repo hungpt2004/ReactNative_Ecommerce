@@ -1,8 +1,14 @@
 import React from 'react'
 import { Image, ScrollView, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { responsiveHeight, responsiveSpacingWidth } from '../../utils/theme/ResponsiveTheme'
+import { CustomDivider } from '../../components/divider/CustomDivider'
+import { Dimensions } from 'react-native';
+
 
 export const ProductDetails = () => {
+
+   const { width, height } = Dimensions.get('window');
+
    return (
       <ScrollView
          horizontal={true}
@@ -23,6 +29,11 @@ export const ProductDetails = () => {
                   <Text>Add to Cart</Text>
                </TouchableOpacity>
             </View>
+
+            <CustomDivider customWidth={width} customHeight={2} customPaddingHorizontal={20} customPaddingVertical={0} customColor={'darkgrey'}/>
+
+            <Text>Package size</Text>
+            
          </View>
       </ScrollView>
    )
