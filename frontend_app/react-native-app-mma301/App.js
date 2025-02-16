@@ -11,19 +11,43 @@ import PaymentSuccessScreen from './src/screens/payment/Payment';
 import SuccessScreen from "./src/screens/verify_success/SuccessScreen";
 import ProfileScreen from "./src/screens/profile_screen/ProfileScreen";
 import ForgotPasswordScreen from "./src/screens/forgot_password/ForgotPasswordScreen";
+import * as Font from 'expo-font';
+import { useFonts, Overpass_400Regular, Overpass_700Bold, Overpass_600SemiBold, Overpass_300Light } from '@expo-google-fonts/overpass';
+import { ActivityIndicator, View } from 'react-native';
 
 const Stack = createStackNavigator();
 
 export default function App() {
+
+  let [fontsLoaded] = useFonts({
+    OverpassRegular: Overpass_400Regular,
+    OverpassBold: Overpass_700Bold,
+    OverpassSemiBold: Overpass_600SemiBold,
+    OverpassLight: Overpass_300Light
+  });
+
+  if (!fontsLoaded) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    )
+  }
+
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="splash">
+        <Stack.Navigator initialRouteName='product_details'>
+          <Stack.Screen name='product_details' component={ProductDetails}  
+          options={{
+            headerTitleStyle: { fontFamily: 'OverpassBold' },
+            headerBackButtonDisplayMode: 'default',
+            headerTitle: 'Sugar'
+          }}/>
 
           {/* Add more route in here */}
           <Stack.Screen name="splash" component={Splash} options={{headerShown: false }}/>
           <Stack.Screen name="banner" component={Walkthrough} options={{headerShown: false }}/>
-          <Stack.Screen name='product_details' component={ProductDetails}/>
           <Stack.Screen name='home' component={HomeScreen} options={{headerShown: false }}/>
           <Stack.Screen name='checkout' component={CheckoutScreen}/>
           <Stack.Screen name='payment' component={PaymentSuccessScreen}/>
