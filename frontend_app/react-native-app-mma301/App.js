@@ -8,6 +8,9 @@ import { Notification } from "./src/screens/notification/Notification";
 import HomeScreen from './src/screens/home_Screen/HomeScreen';
 import CheckoutScreen from './src/screens/checkout/Checkout';
 import PaymentSuccessScreen from './src/screens/payment/Payment';
+import SuccessScreen from "./src/screens/verify_success/SuccessScreen";
+import ProfileScreen from "./src/screens/profile_screen/ProfileScreen";
+import ForgotPasswordScreen from "./src/screens/forgot_password/ForgotPasswordScreen";
 
 const Stack = createStackNavigator();
 
@@ -27,6 +30,7 @@ export default function App() {
           {/* Add more route in here */}
           <Stack.Screen name='login' component={Login} options={{headerShown: false }}/>
           <Stack.Screen name='notification' component={Notification}/>
+          <Stack.Screen name="forgot_password" component={ForgotPasswordScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
