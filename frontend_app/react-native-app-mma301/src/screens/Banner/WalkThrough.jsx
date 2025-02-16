@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
 import maskgroup from "../../../assets/maskgroup.png";
-const Walkthrough = () => {
+export const Walkthrough = ({navigation}) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const pages = [
@@ -34,6 +34,8 @@ const Walkthrough = () => {
   const handleNext = () => {
     if (currentPage < pages.length - 1) {
       setCurrentPage(currentPage + 1);
+    } else {
+      navigation.navigate('login')
     }
   };
 

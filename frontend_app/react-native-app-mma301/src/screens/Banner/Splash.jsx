@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Image, StyleSheet } from "react-native";
 import logo_background from "../../../assets/logo_background.png";
 import logo_info from "../../../assets/logo_info.png";
 import splash from "../../../assets/splash.png";
-export default function Splash() {
+export default function Splash({navigation}) {
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigation.navigate('banner')
+    }, 2000)
+  })
+
   return (
     <View style={styles.container}>
       <Image source={splash} style={styles.imageBackground} />
