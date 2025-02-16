@@ -5,6 +5,7 @@ import { Dimensions } from 'react-native';
 import { responsiveWidth } from '../../utils/theme/ResponsiveTheme';
 import { responsiveHeight } from '../../utils/theme/ResponsiveTheme';
 import { CustomCardSize } from '../../components/card/CustomCardSize';
+import SwiperImage from '../../components/swipper_image/SwiperSlide';
 
 export const ProductDetails = () => {
 
@@ -18,7 +19,9 @@ export const ProductDetails = () => {
          <View style={styles.container}>
             <Text style={styles.title}>Sugar Free Gold Low Calories</Text>
             <Text style={styles.subtitle}>Etiam mollis metus non purus</Text>
+
             {/* Swipper Image */}
+            <SwiperImage/>
             
             
             <View style={styles.btnAddToCart}>
@@ -71,7 +74,8 @@ export const ProductDetails = () => {
 const styles = StyleSheet.create({
    scrollContent: {
       // flexGrow: 1,
-      fontFamily: 'OverpassRegular'
+      fontFamily: 'OverpassRegular',
+      backgroundColor: 'white'
    },
    container: {
       flex: 1,

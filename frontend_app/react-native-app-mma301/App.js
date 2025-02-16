@@ -37,12 +37,14 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='product_details'>
+        <Stack.Navigator initialRouteName='splash'>
           <Stack.Screen name='product_details' component={ProductDetails}  
           options={{
             headerTitleStyle: { fontFamily: 'OverpassBold' },
             headerBackButtonDisplayMode: 'default',
-            headerTitle: 'Sugar'
+            headerTitle: 'Sugar',
+            headerBackTitleVisible: false,
+            headerBackTitle: ""
           }}/>
 
           {/* Add more route in here */}
