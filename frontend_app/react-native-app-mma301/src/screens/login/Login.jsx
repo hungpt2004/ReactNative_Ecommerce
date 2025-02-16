@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Google, Facebook, Apple } from "../../../assets/login_icon/index";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
-export const Login = () => {
+export const Login = ({navigation}) => {
+
+    const [seePassword, setSeePassword] = useState(false)
+
+    const handleSignIn = () => {
+        navigation.navigate('home')
+    }
+
+    const handleSeePassword = () => {
+        setSeePassword(!seePassword)
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>Welcome to SO.</Text>
@@ -39,8 +50,9 @@ export const Login = () => {
                     style={styles.input}
                     placeholder="Password"
                     placeholderTextColor="#000"
+                    secureTextEntry={!seePassword}
                 />
-                <FontAwesome name="eye" size={22} color="gray" style={styles.icon} />
+                <FontAwesome onPress={() => handleSeePassword()} name={seePassword ? "eye" : "eye-off"} size={22} color="gray" style={styles.icon} />
             </View>
             {/* forgot password */}
             <View style={styles.forgotPasswordContainer}>
@@ -49,7 +61,7 @@ export const Login = () => {
             {/* button */}
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={[styles.button, styles.loginButton]}>
-                    <Text style={styles.buttonText}>Sign In <FontAwesome name="arrow-right" style={styles.iconArrow} /></Text>
+                    <Text style={styles.buttonText} onPress={() => handleSignIn()}>Sign In</Text>
 
                 </TouchableOpacity>
             </View>
