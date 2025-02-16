@@ -21,7 +21,7 @@ export default function App() {
           <Stack.Screen name="splash" component={Splash} options={{headerShown: false }}/>
           <Stack.Screen name="banner" component={Walkthrough} options={{headerShown: false }}/>
           <Stack.Screen name='product_details' component={ProductDetails}/>
-          <Stack.Screen name='home' component={HomeScreen}/>
+          <Stack.Screen name='home' component={HomeScreen} options={{headerShown: false }}/>
           <Stack.Screen name='checkout' component={CheckoutScreen}/>
           <Stack.Screen name='payment' component={PaymentSuccessScreen}/>
           {/* Add more route in here */}
