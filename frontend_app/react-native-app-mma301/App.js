@@ -5,6 +5,9 @@ import Splash from "./src/screens/Banner/Splash";
 import Walkthrough from "./src/screens/Banner/WalkThrough";
 import { Login } from "./src/screens/login/Login";
 import { Notification } from "./src/screens/notification/Notification";
+import HomeScreen from './src/screens/home_Screen/HomeScreen';
+import CheckoutScreen from './src/screens/checkout/Checkout';
+import PaymentSuccessScreen from './src/screens/payment/Payment';
 
 const Stack = createStackNavigator();
 
@@ -18,7 +21,9 @@ export default function App() {
           <Stack.Screen name="splash" component={Splash} options={{headerShown: false }}/>
           <Stack.Screen name="banner" component={Walkthrough} options={{headerShown: false }}/>
           <Stack.Screen name='product_details' component={ProductDetails}/>
-
+          <Stack.Screen name='home' component={HomeScreen}/>
+          <Stack.Screen name='checkout' component={CheckoutScreen}/>
+          <Stack.Screen name='payment' component={PaymentSuccessScreen}/>
           {/* Add more route in here */}
           <Stack.Screen name='login' component={Login} options={{headerShown: false }}/>
           <Stack.Screen name='notification' component={Notification}/>
