@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Google, Facebook, Apple } from "../../../assets/login_icon/index";
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+
 export const Login = () => {
     return (
         <View style={styles.container}>
