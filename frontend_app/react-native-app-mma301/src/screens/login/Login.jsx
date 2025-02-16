@@ -15,6 +15,10 @@ export const Login = ({navigation}) => {
         setSeePassword(!seePassword)
     }
 
+    const handleForgotPassword = () => {
+        navigation.navigate('forgot_password')
+    }
+
     return (
         <View style={styles.container}>
             <Text style={styles.titleText}>Welcome to SO.</Text>
@@ -56,7 +60,7 @@ export const Login = ({navigation}) => {
             </View>
             {/* forgot password */}
             <View style={styles.forgotPasswordContainer}>
-                <Text>Forgot password?</Text>
+                <Text onPress={() => handleForgotPassword()} >Forgot password?</Text>
             </View>
             {/* button */}
             <View style={styles.buttonContainer}>

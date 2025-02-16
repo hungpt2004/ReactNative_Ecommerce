@@ -8,13 +8,82 @@ import {
   TextInput,
   Image,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
+  FlatList
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Navbar from '../../components/layouts/Navbar';
 import Footer from '../../components/layouts/Footer';
 
-const HomeScreen = () => {
+const dealsData = [
+  {
+    id: '1',
+    name: "Men's Denim Jeans",
+    price: 'Rs.112',
+    image:
+      'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQoLEVTUBDpU0mHKMUKmMoo3Ck9kFVGGAraXHmx4inSLD1lOl3doSMxruLrwp_EY1qGb6F9T3bAN-zv2zmnWFvPPvzoBgS_dQqPWWbOLgER&usqp=CAE',
+    rating: '⭐ 2',
+  },
+  {
+    id: '2',
+    name: "Women's T-Shirt",
+    price: 'Rs.220',
+    image:
+      'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS5Vh7yBkqWFkrGPeWcXktkdgnEhAyrf_px35-SOeUjjXUfF5zUcDOLt1pKAeTEmNe8nbLV4OtgJNxZNsgM7-DCFExWdYXPwkZjorTnENc&usqp=CAE',
+    rating: '⭐ 2',
+  },
+  {
+    id: '3',
+    name: "Men's Sneakers",
+    price: 'Rs.350',
+    image:
+      'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ74LvVpG6pfH6X1lTWnKlYZuV13K3FOvIOIzC2o8i178_MfcZflDaeVSvR9K_nElFLQJ6uOKJqFYYNywA9fVrv2eD86IeV-3Xer3VkKh1ISz1Mj87xafVCZA&usqp=CAE',
+    rating: '⭐ 4.5',
+  },
+  {
+    id: '4',
+    name: "Casual Hoodie",
+    price: 'Rs.499',
+    image:
+      'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQMUMaXWZE6D-Ry1ZmBk-QsNgBvsneJ6cj1yWyEl4gthcshZM-6lZlOadzU1SQ01XMMWoSy4TB99ZVXSmzmXak9GMgMLOTKfRTLknxgC1I&usqp=CAE',
+    rating: '⭐ 4.2',
+  },
+  {
+    id: '5',
+    name: "Formal Leather Shoes",
+    price: 'Rs.899',
+    image:
+      'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR-gIVd1OMVwTZ3Vk4rDKa9b6egkjrpiIpkO8pQDQ-JJx9wiTQn4Oycbep7GIrxnP3h0JYVQIFz8mwVRnyNgjchGD3nnxcNkEjMk3DjtAoJyoJ0Wexmnq5TYg&usqp=CAE',
+    rating: '⭐ 5',
+  },
+  {
+    id: '6',
+    name: "Slim Fit Jacket",
+    price: 'Rs.650',
+    image:
+      'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRxrgdm74_x2lFKxf9hf1Vs_FcDF5RUb40gZ23P__haogQ6hXlVmCjmto-OCz790FvDUyDbqwtCBERrlcq8mf58_8Lg-Rv5IbK3ZIgvhuCs2Tg2QFCGlsDj&usqp=CAE',
+    rating: '⭐ 4.8',
+  },
+];
+
+
+const HomeScreen = ({navigation}) => {
+
+  const handleProductDetail = () => {
+    navigation.navigate('product_details')
+  }
+
+  const renderDealItem = ({ item }) => (
+    <TouchableOpacity onPress={() => handleProductDetail()} style={styles.dealItem}>
+      <Image source={{ uri: item.image }} style={styles.dealImage} />
+      <Text style={styles.dealName}>{item.name}</Text>
+      <Text style={styles.dealPrice}>{item.price}</Text>
+      <View style={styles.dealBadge}>
+        <Text style={styles.dealBadgeText}>{item.rating}</Text>
+      </View>
+    </TouchableOpacity>
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
@@ -52,7 +121,7 @@ const HomeScreen = () => {
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchInput}
-            placeholder="Search Clothing & Fashion..."
+            placeholder=" Search Clothing & Fashion..."
             placeholderTextColor="#999"
           />
         </View>
@@ -100,77 +169,13 @@ const HomeScreen = () => {
             </TouchableOpacity>
           </View>
 
-          <View style={styles.dealsGrid}>
-            <View style={styles.dealItem}>
-              <Image
-                source={{ uri: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQoLEVTUBDpU0mHKMUKmMoo3Ck9kFVGGAraXHmx4inSLD1lOl3doSMxruLrwp_EY1qGb6F9T3bAN-zv2zmnWFvPPvzoBgS_dQqPWWbOLgER&usqp=CAE' }}
-                style={styles.dealImage}
-              />
-              <Text style={styles.dealName}>Men's Denim Jeans</Text>
-              <Text style={styles.dealPrice}>Rs.112</Text>
-              <View style={styles.dealBadge}>
-                <Text style={styles.dealBadgeText}>⭐ 2</Text>
-              </View>
-            </View>
-            <View style={styles.dealItem}>
-              <Image
-                source={{ uri: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS5Vh7yBkqWFkrGPeWcXktkdgnEhAyrf_px35-SOeUjjXUfF5zUcDOLt1pKAeTEmNe8nbLV4OtgJNxZNsgM7-DCFExWdYXPwkZjorTnENc&usqp=CAE' }}
-                style={styles.dealImage}
-              />
-              <Text style={styles.dealName}>Women's T-Shirt</Text>
-              <Text style={styles.dealPrice}>Rs.220</Text>
-
-              <View style={styles.dealBadge}>
-                <Text style={styles.dealBadgeText}>⭐ 2</Text>
-              </View>
-            </View>
-            <View style={styles.dealItem}>
-              <Image
-                source={{ uri: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQ74LvVpG6pfH6X1lTWnKlYZuV13K3FOvIOIzC2o8i178_MfcZflDaeVSvR9K_nElFLQJ6uOKJqFYYNywA9fVrv2eD86IeV-3Xer3VkKh1ISz1Mj87xafVCZA&usqp=CAE' }}
-                style={styles.dealImage}
-              />
-              <Text style={styles.dealName}>Men's Denim Jeans</Text>
-              <Text style={styles.dealPrice}>Rs.112</Text>
-              <View style={styles.dealBadge}>
-                <Text style={styles.dealBadgeText}>⭐ 2</Text>
-              </View>
-            </View>
-            <View style={styles.dealItem}>
-              <Image
-                source={{ uri: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQMUMaXWZE6D-Ry1ZmBk-QsNgBvsneJ6cj1yWyEl4gthcshZM-6lZlOadzU1SQ01XMMWoSy4TB99ZVXSmzmXak9GMgMLOTKfRTLknxgC1I&usqp=CAE' }}
-                style={styles.dealImage}
-              />
-              <Text style={styles.dealName}>Women's T-Shirt</Text>
-              <Text style={styles.dealPrice}>Rs.220</Text>
-
-              <View style={styles.dealBadge}>
-                <Text style={styles.dealBadgeText}>⭐ 2</Text>
-              </View>
-            </View>
-            <View style={styles.dealItem}>
-              <Image
-                source={{ uri: 'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcR-gIVd1OMVwTZ3Vk4rDKa9b6egkjrpiIpkO8pQDQ-JJx9wiTQn4Oycbep7GIrxnP3h0JYVQIFz8mwVRnyNgjchGD3nnxcNkEjMk3DjtAoJyoJ0Wexmnq5TYg&usqp=CAE' }}
-                style={styles.dealImage}
-              />
-              <Text style={styles.dealName}>Men's Denim Jeans</Text>
-              <Text style={styles.dealPrice}>Rs.112</Text>
-              <View style={styles.dealBadge}>
-                <Text style={styles.dealBadgeText}>⭐ 2</Text>
-              </View>
-            </View>
-            <View style={styles.dealItem}>
-              <Image
-                source={{ uri: 'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcRxrgdm74_x2lFKxf9hf1Vs_FcDF5RUb40gZ23P__haogQ6hXlVmCjmto-OCz790FvDUyDbqwtCBERrlcq8mf58_8Lg-Rv5IbK3ZIgvhuCs2Tg2QFCGlsDj&usqp=CAE' }}
-                style={styles.dealImage}
-              />
-              <Text style={styles.dealName}>Women's T-Shirt</Text>
-              <Text style={styles.dealPrice}>Rs.220</Text>
-
-              <View style={styles.dealBadge}>
-                <Text style={styles.dealBadgeText}>⭐ 2</Text>
-              </View>
-            </View>
-          </View>
+          <FlatList
+            data={dealsData}
+            renderItem={renderDealItem}
+            keyExtractor={(item) => item.id}
+            numColumns={2} // Hiển thị dạng lưới 2 cột
+            columnWrapperStyle={styles.dealsGrid}
+          />
         </View>
 
         <View style={{ height: 80 }} />
