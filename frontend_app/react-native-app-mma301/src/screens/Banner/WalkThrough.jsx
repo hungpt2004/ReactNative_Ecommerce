@@ -40,7 +40,7 @@ export const Walkthrough = ({navigation}) => {
   };
 
   const handleSkip = () => {
-    setCurrentPage(pages.length - 1);
+    navigation.navigate('login')
   };
 
   return (

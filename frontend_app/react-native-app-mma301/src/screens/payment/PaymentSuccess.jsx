@@ -10,7 +10,7 @@ import LottieView from 'lottie-react-native';
 
 const PURPLE = '#6A5AE0';
 
-const PaymentSuccessScreen = () => {
+const PaymentSuccessScreen = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.animationWrapper}>
@@ -28,7 +28,7 @@ const PaymentSuccessScreen = () => {
         You can track the delivery in the order section.
       </Text>
 
-      <TouchableOpacity style={styles.continueButton}>
+      <TouchableOpacity onPress={() => navigation.navigate('home')} style={styles.continueButton}>
         <Text style={styles.continueButtonText}>Continue Order</Text>
       </TouchableOpacity>
     </SafeAreaView>

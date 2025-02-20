@@ -9,9 +9,10 @@ import {
   StyleSheet,
   ScrollView,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-const CartScreen = () => {
+const CartScreen = ({navigation}) => {
   const [cart, setCart] = useState([
     {
       id: 1,
@@ -61,78 +62,80 @@ const CartScreen = () => {
   const total = orderTotal - itemsDiscount - couponDiscount;
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.header}>
-        <Icon name="arrow-left" size={24} />
-        <Text style={styles.headerText}>Your cart</Text>
-      </View>
+    <SafeAreaView>
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.header}>
+          <Icon onPress={() => navigation.navigate('home')}  name="arrow-left" size={24} />
+          <Text style={styles.headerText}>Your cart</Text>
+        </View>
 
-      <View style={styles.cartSubHeader}>
-        <Text> {cart.length} Items in your cart</Text>
-        <Text style={styles.addMoreText}> + Add more</Text>
-      </View>
-      {cart.map((item) => (
-        <View key={item.id} style={styles.itemContainer}>
-          <Image source={item.image} style={styles.itemImage} />
-          <View style={styles.itemDetails}>
-            <Text style={styles.itemTitle}>{item.name}</Text>
-            <Text style={styles.itemSubtitle}>{item.description}</Text>
-            <Text style={styles.itemPrice}>Rs.{item.price}</Text>
-          </View>
-          <View style={styles.quantityContainer}>
+        <View style={styles.cartSubHeader}>
+          <Text> {cart.length} Items in your cart</Text>
+          <Text style={styles.addMoreText}> + Add more</Text>
+        </View>
+        {cart.map((item) => (
+          <View key={item.id} style={styles.itemContainer}>
+            <Image source={item.image} style={styles.itemImage} />
+            <View style={styles.itemDetails}>
+              <Text style={styles.itemTitle}>{item.name}</Text>
+              <Text style={styles.itemSubtitle}>{item.description}</Text>
+              <Text style={styles.itemPrice}>Rs.{item.price}</Text>
+            </View>
+            <View style={styles.quantityContainer}>
+              <TouchableOpacity
+                style={styles.quantityDecButton}
+                onPress={() => updateQuantity(item.id, "decrease")}
+              >
+                <Text style={styles.quantityDecButtonText}>-</Text>
+              </TouchableOpacity>
+              <Text style={styles.quantityText}>{item.quantity}</Text>
+              <TouchableOpacity
+                style={styles.quantityIncButton}
+                onPress={() => updateQuantity(item.id, "increase")}
+              >
+                <Text style={styles.quantityButtonText}>+</Text>
+              </TouchableOpacity>
+            </View>
             <TouchableOpacity
-              style={styles.quantityDecButton}
-              onPress={() => updateQuantity(item.id, "decrease")}
+              style={styles.removeButton}
+              onPress={() => removeItem(item.id)}
             >
-              <Text style={styles.quantityDecButtonText}>-</Text>
-            </TouchableOpacity>
-            <Text style={styles.quantityText}>{item.quantity}</Text>
-            <TouchableOpacity
-              style={styles.quantityIncButton}
-              onPress={() => updateQuantity(item.id, "increase")}
-            >
-              <Text style={styles.quantityButtonText}>+</Text>
+              <Icon name="times" size={20} color="#ccc" />
             </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.removeButton}
-            onPress={() => removeItem(item.id)}
-          >
-            <Icon name="times" size={20} color="#ccc" />
-          </TouchableOpacity>
+        ))}
+        <View style={styles.summaryContainer}>
+          <Text style={styles.summaryTitle}>Payment Summary</Text>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryText}>Order Total</Text>
+            <Text style={styles.summaryText}>Rs.{orderTotal.toFixed(2)}</Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryText}>Items Discount</Text>
+            <Text style={styles.summaryText}>
+              - Rs.{itemsDiscount.toFixed(2)}
+            </Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryText}>Coupon Discount</Text>
+            <Text style={styles.summaryText}>
+              - Rs.{couponDiscount.toFixed(2)}
+            </Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryText}>Shipping</Text>
+            <Text style={styles.summaryText}>Free</Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Text style={styles.summaryTotalText}>Total</Text>
+            <Text style={styles.summaryTotalText}>Rs.{total.toFixed(2)}</Text>
+          </View>
         </View>
-      ))}
-      <View style={styles.summaryContainer}>
-        <Text style={styles.summaryTitle}>Payment Summary</Text>
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryText}>Order Total</Text>
-          <Text style={styles.summaryText}>Rs.{orderTotal.toFixed(2)}</Text>
-        </View>
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryText}>Items Discount</Text>
-          <Text style={styles.summaryText}>
-            - Rs.{itemsDiscount.toFixed(2)}
-          </Text>
-        </View>
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryText}>Coupon Discount</Text>
-          <Text style={styles.summaryText}>
-            - Rs.{couponDiscount.toFixed(2)}
-          </Text>
-        </View>
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryText}>Shipping</Text>
-          <Text style={styles.summaryText}>Free</Text>
-        </View>
-        <View style={styles.summaryRow}>
-          <Text style={styles.summaryTotalText}>Total</Text>
-          <Text style={styles.summaryTotalText}>Rs.{total.toFixed(2)}</Text>
-        </View>
-      </View>
-      <TouchableOpacity style={styles.orderButton}>
-        <Text style={styles.orderButtonText}>Place Order</Text>
-      </TouchableOpacity>
-    </ScrollView>
+        <TouchableOpacity onPress={() => navigation.navigate('checkout')} style={styles.orderButton}>
+          <Text style={styles.orderButtonText}>Place Order</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

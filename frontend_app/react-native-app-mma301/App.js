@@ -7,13 +7,17 @@ import { Login } from "./src/screens/login/Login";
 import { Notification } from "./src/screens/notification/Notification";
 import HomeScreen from './src/screens/home_Screen/HomeScreen';
 import CheckoutScreen from './src/screens/checkout/Checkout';
-import PaymentSuccessScreen from './src/screens/payment/Payment';
 import SuccessScreen from "./src/screens/verify_success/SuccessScreen";
 import ProfileScreen from "./src/screens/profile_screen/ProfileScreen";
 import ForgotPasswordScreen from "./src/screens/forgot_password/ForgotPasswordScreen";
 import * as Font from 'expo-font';
 import { useFonts, Overpass_400Regular, Overpass_700Bold, Overpass_600SemiBold, Overpass_300Light } from '@expo-google-fonts/overpass';
 import { ActivityIndicator, View } from 'react-native';
+import { Register } from "./src/screens/register/RegisterScreen";
+import CartScreen from "./src/screens/shopping_cart/ShoppingCart";
+import PaymentSuccessScreen from "./src/screens/payment/PaymentSuccess";
+import PaymentFailScreen from "./src/screens/payment/PaymentFail";
+import FavoriteProductsScreen from "./src/screens/favorite/FavoriteScreen";
 
 const Stack = createStackNavigator();
 
@@ -51,12 +55,17 @@ export default function App() {
           <Stack.Screen name="splash" component={Splash} options={{headerShown: false }}/>
           <Stack.Screen name="banner" component={Walkthrough} options={{headerShown: false }}/>
           <Stack.Screen name='home' component={HomeScreen} options={{headerShown: false }}/>
+          <Stack.Screen name='profile' component={ProfileScreen}/>
           <Stack.Screen name='checkout' component={CheckoutScreen}/>
-          <Stack.Screen name='payment' component={PaymentSuccessScreen}/>
           {/* Add more route in here */}
           <Stack.Screen name='login' component={Login} options={{headerShown: false }}/>
           <Stack.Screen name='notification' component={Notification}/>
           <Stack.Screen name="forgot_password" component={ForgotPasswordScreen} />
+          <Stack.Screen name="register" component={Register} options={{headerShown: false}}/>
+          <Stack.Screen name="cart" component={CartScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="success" component={PaymentSuccessScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="fail" component={PaymentFailScreen} options={{headerShown: false}}/>
+          <Stack.Screen name="favorite" component={FavoriteProductsScreen} options={{headerTitle: 'Favorite List Product'}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </>

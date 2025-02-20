@@ -81,12 +81,17 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.dealBadge}>
         <Text style={styles.dealBadgeText}>{item.rating}</Text>
       </View>
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <TouchableOpacity style={{backgroundColor: 'lightblue', paddingHorizontal: 8, paddingVertical: 5,  borderRadius: 10}}>
+          <Text onPress={() => navigation.navigate('cart')}>Add to cart</Text>
+        </TouchableOpacity>
+      </View>
     </TouchableOpacity>
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <SafeAreaView>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <LinearGradient
           colors={['#6A5AE0', '#9C59E0']} 
           style={styles.headerBackground}
@@ -99,13 +104,13 @@ const HomeScreen = ({navigation}) => {
             <View style={styles.headerIcons}>
               <TouchableOpacity>
                 <Image
-                  source={require('../../../assets/bell-860.png')}
+                  source={{uri: '../../../assets/adaptive-icon.png'}}
                   style={styles.icon}
                 />
               </TouchableOpacity>
               <TouchableOpacity style={{ marginLeft: 16 }}>
                 <Image
-                  source={require('../../../assets/add-to-cart-3046.png')}
+                  source={{uri: '../../../assets/add-to-cart-3046.png'}}
                   style={styles.icon}
                 />
               </TouchableOpacity>
@@ -192,7 +197,7 @@ const PURPLE = '#6A5AE0';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: '#fff',
   },
   headerBackground: {
@@ -356,7 +361,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 10,
     right: 10,
-    backgroundColor: '#FFD700',
+    backgroundColor: '#lightgray',
     borderRadius: 16,
     paddingHorizontal: 8,
     paddingVertical: 4,

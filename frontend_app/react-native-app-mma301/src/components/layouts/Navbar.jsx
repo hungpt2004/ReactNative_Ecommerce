@@ -7,10 +7,14 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const PURPLE = '#6A5AE0';
 
 const Navbar = () => {
+
+  const navigation = useNavigation()
+
   return (
     <View style={styles.navBar}>
       <TouchableOpacity style={styles.navBarItem}>
@@ -18,17 +22,17 @@ const Navbar = () => {
         <Text style={styles.navLabel}>Home</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.navBarItem}>
+      <TouchableOpacity onPress={() => navigation.navigate('favorite')}  style={styles.navBarItem}>
         <Feather name="heart" size={24} color={PURPLE} />
         <Text style={styles.navLabel}>Favorites</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.navBarItem}>
+      <TouchableOpacity onPress={() => navigation.navigate('cart')}   style={styles.navBarItem}>
         <Feather name="shopping-cart" size={24} color={PURPLE} />
         <Text style={styles.navLabel}>Cart</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={styles.navBarItem}>
+      <TouchableOpacity onPress={() => navigation.navigate('profile')} style={styles.navBarItem}>
         <Feather name="user" size={24} color={PURPLE} />
         <Text style={styles.navLabel}>Profile</Text>
       </TouchableOpacity>

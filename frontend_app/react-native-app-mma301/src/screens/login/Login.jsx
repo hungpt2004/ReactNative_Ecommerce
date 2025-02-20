@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Google, Facebook, Apple } from "../../../assets/login_icon/index";
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export const Login = ({navigation}) => {
 
     const [seePassword, setSeePassword] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const handleSignIn = () => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false)
+        }, 1000),
         navigation.navigate('home')
     }
 
@@ -17,6 +22,10 @@ export const Login = ({navigation}) => {
 
     const handleForgotPassword = () => {
         navigation.navigate('forgot_password')
+    }
+
+    const handleGotoRegister = () => {
+        navigation.navigate('register')
     }
 
     return (
@@ -56,7 +65,7 @@ export const Login = ({navigation}) => {
                     placeholderTextColor="#000"
                     secureTextEntry={!seePassword}
                 />
-                <FontAwesome onPress={() => handleSeePassword()} name={seePassword ? "eye" : "eye-off"} size={22} color="gray" style={styles.icon} />
+                <MaterialIcons onPress={() => handleSeePassword()} name={seePassword ? "eye" : "eye-off"} size={22} color="gray" style={styles.icon} />
             </View>
             {/* forgot password */}
             <View style={styles.forgotPasswordContainer}>
@@ -65,13 +74,13 @@ export const Login = ({navigation}) => {
             {/* button */}
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={[styles.button, styles.loginButton]}>
-                    <Text style={styles.buttonText} onPress={() => handleSignIn()}>Sign In</Text>
+                    <Text style={styles.buttonText} onPress={() => handleSignIn()}>{loading ? <ActivityIndicator/> : `Sign In`}</Text>
 
                 </TouchableOpacity>
             </View>
             {/* Signup Text */}
             <View style={styles.signupContainer}>
-                <Text style={styles.signupText1}>Don't have an account? <Text style={styles.signupText}> Create an account</Text></Text>
+                <Text style={styles.signupText1}>Don't have an account? <Text onPress={() => handleGotoRegister()} style={styles.signupText}> Create an account</Text></Text>
             </View>
         </View>
     )
