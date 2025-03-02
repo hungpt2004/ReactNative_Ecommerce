@@ -3,16 +3,12 @@ import { ActivityIndicator, StyleSheet, Text, TextInput, TouchableOpacity, View 
 import { Google, Facebook, Apple } from "../../../assets/login_icon/index";
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export const Login = ({navigation}) => {
+export const Login = ({ navigation }) => {
 
     const [seePassword, setSeePassword] = useState(false)
     const [loading, setLoading] = useState(false)
 
     const handleSignIn = () => {
-        setLoading(true);
-        setTimeout(() => {
-            setLoading(false)
-        }, 1000),
         navigation.navigate('home')
     }
 
@@ -74,8 +70,7 @@ export const Login = ({navigation}) => {
             {/* button */}
             <View style={styles.buttonContainer}>
                 <TouchableOpacity style={[styles.button, styles.loginButton]}>
-                    <Text style={styles.buttonText} onPress={() => handleSignIn()}>{loading ? <ActivityIndicator/> : `Sign In`}</Text>
-
+                    {loading ? <ActivityIndicator color={'white'} size={20} /> : <Text style={styles.buttonText} onPress={() => handleSignIn()}>Sign In</Text>}
                 </TouchableOpacity>
             </View>
             {/* Signup Text */}

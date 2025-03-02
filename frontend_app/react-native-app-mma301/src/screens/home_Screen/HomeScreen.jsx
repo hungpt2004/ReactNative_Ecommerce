@@ -14,6 +14,8 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import Navbar from '../../components/layouts/Navbar';
 import Footer from '../../components/layouts/Footer';
+import { MaterialIcons } from '@expo/vector-icons';
+
 
 const dealsData = [
   {
@@ -67,7 +69,7 @@ const dealsData = [
 ];
 
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = ({ navigation }) => {
 
   const handleProductDetail = () => {
     navigation.navigate('product_details')
@@ -81,8 +83,8 @@ const HomeScreen = ({navigation}) => {
       <View style={styles.dealBadge}>
         <Text style={styles.dealBadgeText}>{item.rating}</Text>
       </View>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <TouchableOpacity style={{backgroundColor: 'lightblue', paddingHorizontal: 8, paddingVertical: 5,  borderRadius: 10}}>
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <TouchableOpacity style={{ backgroundColor: 'lightblue', paddingHorizontal: 8, paddingVertical: 5, borderRadius: 10 }}>
           <Text onPress={() => navigation.navigate('cart')}>Add to cart</Text>
         </TouchableOpacity>
       </View>
@@ -91,27 +93,39 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <SafeAreaView>
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+      <ScrollView
+        nestedScrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        style={styles.container}
+      >
         <LinearGradient
-          colors={['#6A5AE0', '#9C59E0']} 
+          colors={['#6A5AE0', '#9C59E0']}
           style={styles.headerBackground}
         >
           <View style={styles.headerTopRow}>
             <Image
-              source={require('../../../assets/pngwing.com.png')} 
+              source={require('../../../assets/pngwing.com.png')}
               style={styles.avatar}
             />
             <View style={styles.headerIcons}>
               <TouchableOpacity>
-                <Image
-                  source={{uri: '../../../assets/adaptive-icon.png'}}
+                {/* <Image
+                  source={require('../../../assets/bell-860.png')}
                   style={styles.icon}
+                /> */}
+                <MaterialIcons
+                  size={30}
+                  name='notifications'
+                  onPress={() => navigation.navigate('notification')}
+                  color={'white'}
                 />
               </TouchableOpacity>
               <TouchableOpacity style={{ marginLeft: 16 }}>
-                <Image
-                  source={{uri: '../../../assets/add-to-cart-3046.png'}}
-                  style={styles.icon}
+                <MaterialIcons
+                  size={30}
+                  name='shopping-cart'
+                  color={'white'}
+                  onPress={() => navigation.navigate('cart')}
                 />
               </TouchableOpacity>
             </View>
@@ -129,6 +143,26 @@ const HomeScreen = ({navigation}) => {
             placeholder=" Search Clothing & Fashion..."
             placeholderTextColor="#999"
           />
+        </View>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+          <TouchableOpacity 
+          style={{ 
+            backgroundColor: '#FF8C7F', 
+            paddingHorizontal: 10, 
+            paddingVertical: 8, 
+            marginTop: 10, 
+            borderRadius: 10 
+          }}
+          onPress={() => navigation.navigate('search')}
+          >
+            <Text 
+            style={{ 
+              color: 'white' 
+            }}>
+              Search
+            </Text>
+          </TouchableOpacity>
         </View>
 
         <View style={styles.sectionContainer}>
@@ -184,8 +218,8 @@ const HomeScreen = ({navigation}) => {
         </View>
 
         <View style={{ height: 80 }} />
-        <Footer/>
-        <Navbar/>
+        <Footer />
+        <Navbar />
       </ScrollView>
     </SafeAreaView>
   );

@@ -12,12 +12,13 @@ import ProfileScreen from "./src/screens/profile_screen/ProfileScreen";
 import ForgotPasswordScreen from "./src/screens/forgot_password/ForgotPasswordScreen";
 import * as Font from 'expo-font';
 import { useFonts, Overpass_400Regular, Overpass_700Bold, Overpass_600SemiBold, Overpass_300Light } from '@expo-google-fonts/overpass';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, Text, TouchableOpacity, View } from 'react-native';
 import { Register } from "./src/screens/register/RegisterScreen";
 import CartScreen from "./src/screens/shopping_cart/ShoppingCart";
 import PaymentSuccessScreen from "./src/screens/payment/PaymentSuccess";
 import PaymentFailScreen from "./src/screens/payment/PaymentFail";
 import FavoriteProductsScreen from "./src/screens/favorite/FavoriteScreen";
+import SearchScreen from "./src/screens/search/SearchScreen";
 
 const Stack = createStackNavigator();
 
@@ -59,13 +60,15 @@ export default function App() {
           <Stack.Screen name='checkout' component={CheckoutScreen}/>
           {/* Add more route in here */}
           <Stack.Screen name='login' component={Login} options={{headerShown: false }}/>
-          <Stack.Screen name='notification' component={Notification}/>
+          {/* Sửa header notification - LONG */}
+          <Stack.Screen name='notification' component={Notification}/> 
           <Stack.Screen name="forgot_password" component={ForgotPasswordScreen} />
           <Stack.Screen name="register" component={Register} options={{headerShown: false}}/>
           <Stack.Screen name="cart" component={CartScreen} options={{headerShown: false}}/>
           <Stack.Screen name="success" component={PaymentSuccessScreen} options={{headerShown: false}}/>
           <Stack.Screen name="fail" component={PaymentFailScreen} options={{headerShown: false}}/>
           <Stack.Screen name="favorite" component={FavoriteProductsScreen} options={{headerTitle: 'Favorite List Product'}}/>
+          <Stack.Screen name="search" component={SearchScreen} options={{headerTitle: 'Search'}}/>
         </Stack.Navigator>
       </NavigationContainer>
     </>

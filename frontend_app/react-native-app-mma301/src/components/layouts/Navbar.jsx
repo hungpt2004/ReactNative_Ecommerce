@@ -1,40 +1,43 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
 const PURPLE = '#6A5AE0';
+const GRAY = '#A0A0A0'; // Màu xám cho icon không được chọn
 
 const Navbar = () => {
+  const navigation = useNavigation();
+  const [selectedTab, setSelectedTab] = useState('home'); // Mặc định là 'home'
 
-  const navigation = useNavigation()
+  const handlePress = (screen) => {
+    setSelectedTab(screen);
+    navigation.navigate(screen);
+    setTimeout(() => {
+      setSelectedTab('home')
+    }, 500)
+  };
 
   return (
     <View style={styles.navBar}>
-      <TouchableOpacity style={styles.navBarItem}>
-        <Feather name="home" size={24} color={PURPLE} />
-        <Text style={styles.navLabel}>Home</Text>
+      <TouchableOpacity onPress={() => handlePress('home')} style={styles.navBarItem}>
+        <Feather name="home" size={24} color={selectedTab === 'home' ? PURPLE : GRAY} />
+        <Text style={[styles.navLabel, selectedTab === 'home' && styles.activeLabel]}>Home</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('favorite')}  style={styles.navBarItem}>
-        <Feather name="heart" size={24} color={PURPLE} />
-        <Text style={styles.navLabel}>Favorites</Text>
+      <TouchableOpacity onPress={() => handlePress('favorite')} style={styles.navBarItem}>
+        <Feather name="heart" size={24} color={selectedTab === 'favorite' ? PURPLE : GRAY} />
+        <Text style={[styles.navLabel, selectedTab === 'favorite' && styles.activeLabel]}>Favorites</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('cart')}   style={styles.navBarItem}>
-        <Feather name="shopping-cart" size={24} color={PURPLE} />
-        <Text style={styles.navLabel}>Cart</Text>
+      <TouchableOpacity onPress={() => handlePress('cart')} style={styles.navBarItem}>
+        <Feather name="shopping-cart" size={24} color={selectedTab === 'cart' ? PURPLE : GRAY} />
+        <Text style={[styles.navLabel, selectedTab === 'cart' && styles.activeLabel]}>Cart</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('profile')} style={styles.navBarItem}>
-        <Feather name="user" size={24} color={PURPLE} />
-        <Text style={styles.navLabel}>Profile</Text>
+      <TouchableOpacity onPress={() => handlePress('profile')} style={styles.navBarItem}>
+        <Feather name="user" size={24} color={selectedTab === 'profile' ? PURPLE : GRAY} />
+        <Text style={[styles.navLabel, selectedTab === 'profile' && styles.activeLabel]}>Profile</Text>
       </TouchableOpacity>
     </View>
   );
@@ -67,7 +70,11 @@ const styles = StyleSheet.create({
   },
   navLabel: {
     fontSize: 12,
-    color: PURPLE,
+    color: GRAY,
     marginTop: 4,
+  },
+  activeLabel: {
+    color: PURPLE,
+    fontWeight: 'bold',
   },
 });
