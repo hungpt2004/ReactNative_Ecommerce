@@ -14,7 +14,7 @@ import ForgotPasswordScreen from "./src/screens/forgot_password/ForgotPasswordSc
 import * as Font from 'expo-font';
 import { useFonts, Overpass_400Regular, Overpass_700Bold, Overpass_600SemiBold, Overpass_300Light } from '@expo-google-fonts/overpass';
 import { ActivityIndicator, View } from 'react-native';
-
+import PaymentFailScreen from "./src/screens/payment/Payment_fail";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -37,7 +37,7 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='splash'>
+        <Stack.Navigator initialRouteName='payment_fail'>
           <Stack.Screen name='product_details' component={ProductDetails}  
           options={{
             headerTitleStyle: { fontFamily: 'OverpassBold' },
@@ -53,6 +53,7 @@ export default function App() {
           <Stack.Screen name='home' component={HomeScreen} options={{headerShown: false }}/>
           <Stack.Screen name='checkout' component={CheckoutScreen}/>
           <Stack.Screen name='payment' component={PaymentSuccessScreen}/>
+          <Stack.Screen name='payment_fail' component={PaymentFailScreen} />
           {/* Add more route in here */}
           <Stack.Screen name='login' component={Login} options={{headerShown: false }}/>
           <Stack.Screen name='notification' component={Notification}/>
