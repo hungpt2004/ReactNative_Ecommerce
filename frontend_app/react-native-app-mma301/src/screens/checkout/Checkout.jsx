@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const CheckoutScreen = () => {
+const CheckoutScreen = ({navigation}) => {
   const [selectedAddress, setSelectedAddress] = useState('home');
   const [selectedPayment, setSelectedPayment] = useState('cod');
 
@@ -116,7 +116,7 @@ const CheckoutScreen = () => {
           <Text style={styles.paymentText}>Cash on Delivery</Text>
         </TouchableOpacity>
       </View>
-      <TouchableOpacity style={styles.payNowButton} activeOpacity={0.8}>
+      <TouchableOpacity onPress={() => navigation.navigate('success')} style={styles.payNowButton} activeOpacity={0.8}>
         <Text style={styles.payNowText}>Pay Now</Text>
       </TouchableOpacity>
     </ScrollView>

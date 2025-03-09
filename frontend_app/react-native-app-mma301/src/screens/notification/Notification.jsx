@@ -21,7 +21,7 @@ export const Notification = () => {
     return (
         <View style={styles.container}>
             {/* Header */}
-            <View style={styles.header}>
+            {/* <View style={styles.header}>
                 <TouchableOpacity style={styles.headerLeft} >
                     <Arrowleft />
                     <Text style={styles.notificationHeader}>Notification</Text>
@@ -29,7 +29,7 @@ export const Notification = () => {
                 <TouchableOpacity onPress={clearAllNotifications}>
                     <Text style={styles.clearAll}>Clear All</Text>
                 </TouchableOpacity>
-            </View>
+            </View> */}
             <View
                 style={{
                     borderBottomColor: '#E7E9EC',
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#FDFDFD',
-
     },
     header: {
         flexDirection: 'row',
