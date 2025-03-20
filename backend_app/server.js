@@ -11,6 +11,6 @@ connectDB();
 app.use('/auth', authRouter);
 
 app.listen(process.env.PORT, () => {
-   `Server is running at ${process.env.PORT}`;
+   console.log(`Server đang chạy trên port ${process.env.PORT}`);
 })
 

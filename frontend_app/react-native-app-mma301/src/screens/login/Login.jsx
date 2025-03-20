@@ -9,7 +9,14 @@ export const Login = ({ navigation }) => {
     const [loading, setLoading] = useState(false)
 
     const handleSignIn = () => {
-        navigation.navigate('home')
+
+        try {
+
+        } catch (error) {
+            
+        }
+
+        // navigation.navigate('home')
     }
 
     const handleSeePassword = () => {
